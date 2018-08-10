@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find the treasure!</title>
+
+</head>
+<body>
+<h1 id="heading"><center>Find your treasure!</center></h1>
+<center>
+    <img id="map"
+     src="http://amiyuy.com/wow/wp-content/uploads/2016/04/2015-11-20_MoP_Azeroth_Final_1000px_by-amiyuy.jpg"
+
+     width=1024 height=800 align="middle"></center>
+<p id="distance"></p>
+<script src ="http://code.jquery.com/jquery-2.1.0.js"></script>
+<p id="moving"><i>Do you think here is a treasure?</i></p>
+<script>
+
+
+    $('html').mousemove(function (event) {
+        $("#moving").offset({
+            left: event.pageX+10,
+            top: event.pageY+10
+        });
+
+    });
+    const rightLeft = Math.round(Math.random() * 1024);
+    const upDown = Math.round(Math.random() * 800);
+    let clicks = 0;
+    alert(rightLeft+' '+upDown);
+    const treasure = [rightLeft, upDown];
+    let found = false;
+    $("#map").click(function (event) {
+
+        alert('the sum difference is ' + (Math.abs(rightLeft - event.offsetX) + Math.abs(upDown - event.offsetY)) );
+        do{
+
+        var movingElement = document.getElementById("moving");
+
+        if ((Math.abs(rightLeft - event.offsetX) + Math.abs(upDown - event.offsetY) ) < 300 ) {
+            movingElement.innerHTML = "It's close!";
+
+            clicks++;
+        }
+
+         if((Math.abs(rightLeft - event.offsetX) + Math.abs(upDown - event.offsetY)) < 80 ) {
+            alert('You have found it in ' + clicks + ' clicks! Congratulation!');
+            alert('treasure was on '+treasure.toString());
+            found = true;
+             location.reload();
+        }
+
+        else {
+            clicks++;
+            movingElement.innerHTML = "It's far away!";
+        }
+    }while (found = false)
+
+    });
+
+
+</script>
+</body>
+</html>
