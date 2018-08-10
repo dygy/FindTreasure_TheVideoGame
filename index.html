@@ -37,19 +37,20 @@
         do{
 
         var movingElement = document.getElementById("moving");
+         if((Math.abs(rightLeft - event.offsetX) + Math.abs(upDown - event.offsetY)) < 80 ) {
+             clicks++;
+             alert('You have found it in ' + clicks + ' clicks! Congratulation!');
+                alert('treasure was on '+treasure.toString());
+                found = true;
+                location.reload();
+            }
 
-        if ((Math.abs(rightLeft - event.offsetX) + Math.abs(upDown - event.offsetY) ) < 300 ) {
+        else if ((Math.abs(rightLeft - event.offsetX) + Math.abs(upDown - event.offsetY) ) < 350 ) {
             movingElement.innerHTML = "It's close!";
-
             clicks++;
         }
 
-         if((Math.abs(rightLeft - event.offsetX) + Math.abs(upDown - event.offsetY)) < 80 ) {
-            alert('You have found it in ' + clicks + ' clicks! Congratulation!');
-            alert('treasure was on '+treasure.toString());
-            found = true;
-             location.reload();
-        }
+
 
         else {
             clicks++;
